@@ -1,0 +1,24 @@
+services:
+  db-test:
+    image: postgres
+    container_name: db-test
+    restart: always
+    ports:
+      - 4321:5432
+    env_file:
+      - .env.test
+    volumes:
+      - db-test:/var/lib/postgresql/data
+
+  node_app_pratica_github_actions-test:
+    container_name: node_app_pratica_github_actions-test
+    build: .
+    ports:
+      - 5555:4000
+    depends_on:
+      - db-test
+    env_file:
+      - .env.test
+
+volumes:
+  db-test:
