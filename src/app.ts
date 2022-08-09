@@ -6,6 +6,7 @@ app.use(json());
 
 app.get("/students", async (req: Request, res: Response) => {
 	console.log("nova feature");
+	console.log("outra parte da feature");
 	const students = await prisma.student.findMany();
 	res.send(students);
 });
